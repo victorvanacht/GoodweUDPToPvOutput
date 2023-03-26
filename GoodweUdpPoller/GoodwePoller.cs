@@ -21,7 +21,6 @@ namespace GoodweUdpPoller
             using var channel = new UdpClient { EnableBroadcast = true };
             await SendHello(channel, broadcastAddress);
 
-            Console.WriteLine("Waiting for greetings back");
             var timeout = Task.Delay(ListenTimeout);
             while (true)
             {

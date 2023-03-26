@@ -79,4 +79,5 @@ This is a Github fork from the original by Koen van Leeuwen [koen-lee]. <https:/
 Modifications in this fork are:
 
 - Read out parameters from both PV-string, and all 3 phases from 3-phase inverters.
-- Logging to file
+- Logging to local file
+- Verbatim command line option (defaults to false)

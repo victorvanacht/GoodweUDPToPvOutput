@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace GoodweUdpPoller
     {
         private static readonly HttpClient _client = new HttpClient();
 
-
+        private static bool _verbatim;
 
         /// <summary>
         /// Tool for querying Goodwe inverters over the local network.
@@ -27,7 +28,7 @@ namespace GoodweUdpPoller
         /// <param name="pvoutputRequestUrl">optional url to post to</param>
         /// <param name="broadcastAddress">the address to send broadcasts to, for example 192.168.0.255 if that is your subnet</param>
         /// <param name="logfilename">the name of the local log file to which a log entry should be written</param>
-
+        /// <param name="verbatim">if true, data elements will also be printed on screen</param>
         public static async Task Main(
             string host = null,
             int timeout = 1000,
@@ -35,12 +36,18 @@ namespace GoodweUdpPoller
             string pvoutputApikey = "",
             string pvoutputRequestUrl = "https://pvoutput.org/service/r2/addstatus.jsp",
             string broadcastAddress = "255.255.255.255",
-            string logfilename = null)
+            string logfilename = null,
+            bool verbatim = false)
         {
+            _verbatim = verbatim;
             var listenTimeout = TimeSpan.FromMilliseconds(timeout);
             var poller = new GoodwePoller(listenTimeout);
             if (host == null)
             {
+                if (_verbatim)
+                {
+                    Console.WriteLine("Discovering inverter...");
+                }
                 await foreach (var foundInverter in poller.DiscoverInvertersAsync(broadcastAddress))
                 {
                     if (foundInverter.Ssid == null /*== not a Goodwe inverter*/)
@@ -86,14 +93,20 @@ namespace GoodweUdpPoller
             var response = await _client.PostAsync(pvOutputRequestUrl, content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"<={responseString}");
+            if (_verbatim)
+            {
+                Console.WriteLine($"<={responseString}");
+            }
             response.EnsureSuccessStatusCode();
         }
 
         private static void WriteObject(object toWrite)
         {
-            var serialized = JsonSerializer.Serialize(toWrite, new JsonSerializerOptions { WriteIndented = true });
-            Console.WriteLine(serialized);
+            if (_verbatim)
+            {
+                var serialized = JsonSerializer.Serialize(toWrite, new JsonSerializerOptions { WriteIndented = true });
+                Console.WriteLine(serialized);
+            }
         }
     }
 }
