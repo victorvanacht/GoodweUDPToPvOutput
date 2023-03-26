@@ -5,11 +5,14 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+
 namespace GoodweUdpPoller
 {
     class Program
     {
         private static readonly HttpClient _client = new HttpClient();
+
+
 
         /// <summary>
         /// Tool for querying Goodwe inverters over the local network.
@@ -23,13 +26,16 @@ namespace GoodweUdpPoller
         /// <param name="pvoutputApikey">API key for API access on pvoutput.org, see https://pvoutput.org/help/api_specification.html </param>
         /// <param name="pvoutputRequestUrl">optional url to post to</param>
         /// <param name="broadcastAddress">the address to send broadcasts to, for example 192.168.0.255 if that is your subnet</param>
+        /// <param name="logfilename">the name of the local log file to which a log entry should be written</param>
+
         public static async Task Main(
             string host = null,
             int timeout = 1000,
             int pvoutputSystemId = 0,
             string pvoutputApikey = "",
             string pvoutputRequestUrl = "https://pvoutput.org/service/r2/addstatus.jsp",
-            string broadcastAddress = "255.255.255.255")
+            string broadcastAddress = "255.255.255.255",
+            string logfilename = null)
         {
             var listenTimeout = TimeSpan.FromMilliseconds(timeout);
             var poller = new GoodwePoller(listenTimeout);
@@ -55,6 +61,9 @@ namespace GoodweUdpPoller
 
             if (pvoutputSystemId > 0)
                 await PostToPvOutput(response, pvoutputSystemId, pvoutputApikey, pvoutputRequestUrl);
+
+            if (logfilename != null)
+                FileLogger.WriteToFile(logfilename, response);
          }
 
         private static async Task PostToPvOutput(InverterTelemetry inverterStatus, int pvOutputSystemId,

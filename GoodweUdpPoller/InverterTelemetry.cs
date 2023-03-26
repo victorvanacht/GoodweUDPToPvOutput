@@ -7,6 +7,13 @@ namespace GoodweUdpPoller
     public class InverterTelemetry
     {
         /// <summary>
+        /// Timestamp of the telemetry according to the inverter, second precision.
+        /// </summary>
+        public DateTimeOffset Timestamp { get; set; }
+
+        public string ResponseIp { get; set; }
+
+        /// <summary>
         /// Temperature in degrees Celsius
         /// </summary>
         public double Temperature { get; set; }
@@ -80,15 +87,6 @@ namespace GoodweUdpPoller
         public double TestN { get; set; }
 
 
-
-
-
-        /// <summary>
-        /// Timestamp of the telemetry according to the inverter, second precision.
-        /// </summary>
-        public DateTimeOffset Timestamp { get; set; }
-
-        public string ResponseIp { get; set; }
 
         public static byte[] GoodweCrc(ReadOnlySpan<byte> payload)
         {

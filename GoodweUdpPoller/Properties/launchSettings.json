@@ -1,7 +1,8 @@
 {
   "profiles": {
     "GoodweUdpPoller inverter": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "--logfilename e:\\goodwetest.txt"
     },
     "GoodweUdpPoller discovery": {
       "commandName": "Project"
