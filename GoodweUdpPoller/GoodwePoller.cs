@@ -84,14 +84,50 @@ namespace GoodweUdpPoller
                 Timestamp = new DateTimeOffset(new DateTime(kind: DateTimeKind.Local,
                     year: data[5] + 2000, month: data[6], day: data[7],
                     hour: data[8], minute: data[9], second: data[10], millisecond: 0)),
-                Vpv = data.To16BitScale10(11),
-                Ipv = data.To16BitScale10(13),
-                Vac = data.To16BitScale10(41),
-                Iac = data.To16BitScale10(47),
-                GridFrequency = data.To16BitScale100(53),
+                Vpv1 = data.To16BitScale10(11),
+                Ipv1 = data.To16BitScale10(13),
+                Vpv2 = data.To16BitScale10(15),
+                Ipv2 = data.To16BitScale10(17),
+
+                TestD = data.To16Bit(35), // 4017
+                TestE = data.To16Bit(37), // 4047
+                TestF = data.To16Bit(39), // 4027
+
+                Vac1 = data.To16BitScale10(41),
+                Vac2 = data.To16BitScale10(43),
+                Vac3 = data.To16BitScale10(45),
+                Iac1 = data.To16BitScale10(47),
+                Iac2 = data.To16BitScale10(49),
+                Iac3 = data.To16BitScale10(51),
+                GridFrequency1 = data.To16BitScale100(53),
+                GridFrequency2 = data.To16BitScale100(55),
+                GridFrequency3 = data.To16BitScale100(57),
+
+                //TestA = data.To16Bit(59), //0
+
                 Power = data.To16Bit(61),
+
                 Status = (InverterTelemetry.InverterStatus)data[63],
+
+                //TestC = data.To16Bit(65), //0
+
+                //TestH = data.To16Bit(67),  //0
+                //TestH = data.To16Bit(69),  //0
+                //TestI = data.To16Bit(71),  //0
+                //TestH = data.To16Bit(73), //65535
+                //TestA = data.To16Bit(75), //65535
+                TestB = data.To16Bit(77), //65305
+
+                //TestK = data.To16Bit(79), // 0
+                //TestL = data.To16Bit(81), //0
+                TestC = data.To16Bit(83), // 887
+                //TestN = data.To16Bit(85), //65535
+                
                 Temperature = data.To16BitScale10(87),
+
+                //TestH = data.To16Bit(89), // 65535
+                //TestI = data.To16Bit(91), // 65535
+
                 EnergyToday = data.To16BitScale10(93),
                 EnergyLifetime = data.To32BitScale10(95),
                 ResponseIp = responseIp

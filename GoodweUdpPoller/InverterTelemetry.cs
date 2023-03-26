@@ -17,26 +17,71 @@ namespace GoodweUdpPoller
 
         public double EnergyToday { get; set; }
 
-        /// <summary>
-        /// Momentary power at timestamp, in W
-        /// </summary>
         public double Power { get; set; }
 
-        public double Iac { get; set; }
 
-        public double Vac { get; set; }
+        // phase 1 + 2 + 3
 
-        public double GridFrequency { get; set; }
+        public double Iac1 { get; set; }
+
+        public double Vac1 { get; set; }
+
+        public double GridFrequency1 { get; set; }
+
+        public double Iac2 { get; set; }
+
+        public double Vac2 { get; set; }
+
+        public double GridFrequency2 { get; set; }
+
+        public double Iac3 { get; set; }
+
+        public double Vac3 { get; set; }
+
+        public double GridFrequency3 { get; set; }
+
 
         /// <summary>
-        /// DC Current from the solar array, in A 
+        /// DC Current from the solar array 1, in A 
         /// </summary>
-        public double Ipv { get; set; }
+        public double Ipv1 { get; set; }
 
         /// <summary>
-        /// DC Voltage from the solar array, in V
+        /// DC Voltage from the solar array 1, in V
         /// </summary>
-        public double Vpv { get; set; }
+        public double Vpv1 { get; set; }
+
+
+        /// <summary>
+        /// DC Current from the solar array 2, in A 
+        /// </summary>
+        public double Ipv2 { get; set; }
+
+        /// <summary>
+        /// DC Voltage from the solar array 2, in V
+        /// </summary>
+        public double Vpv2 { get; set; }
+
+
+
+        public double TestA { get; set; }
+        public double TestB { get; set; }
+        public double TestC { get; set; }
+        public double TestD { get; set; }
+        public double TestE { get; set; }
+        public double TestF { get; set; }
+        public double TestG { get; set; }
+        public double TestH { get; set; }
+        public double TestI { get; set; }
+        public double TestJ { get; set; }
+        public double TestK { get; set; }
+        public double TestL { get; set; }
+        public double TestM { get; set; }
+        public double TestN { get; set; }
+
+
+
+
 
         /// <summary>
         /// Timestamp of the telemetry according to the inverter, second precision.

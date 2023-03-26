@@ -72,3 +72,8 @@ A sample cron line to push every five minutes:
 */5 *   *   *   *    /home/pi/goodweudppoller/pollgoodwe.sh
 ```
 Make sure the path to the script is correct.
+
+## Changes in fork by Victor van Acht
+This is a Github fork from the original by Koen van Leeuwen [koen-lee]. <https://github.com/koen-lee/GoodweUDPToPvOutput>
+
+Modifications in this fork are to read out parameters from both PV-string, and all 3 phases from 3-phase inverters.

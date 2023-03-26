@@ -55,7 +55,7 @@ namespace GoodweUdpPoller
 
             if (pvoutputSystemId > 0)
                 await PostToPvOutput(response, pvoutputSystemId, pvoutputApikey, pvoutputRequestUrl);
-        }
+         }
 
         private static async Task PostToPvOutput(InverterTelemetry inverterStatus, int pvOutputSystemId,
             string pvOutputApikey, string pvOutputRequestUrl)
@@ -68,7 +68,7 @@ namespace GoodweUdpPoller
                 { "c1", "1" /*Lifetime energy is cumulative*/},
                 { "v2", inverterStatus.Power.ToString(CultureInfo.InvariantCulture) },
                 { "v5", inverterStatus.Temperature.ToString(CultureInfo.InvariantCulture) },
-                { "v6", inverterStatus.Vac.ToString(CultureInfo.InvariantCulture) },
+                { "v6", inverterStatus.Vac1.ToString(CultureInfo.InvariantCulture) },
             };
 
             var content = new FormUrlEncodedContent(values);
