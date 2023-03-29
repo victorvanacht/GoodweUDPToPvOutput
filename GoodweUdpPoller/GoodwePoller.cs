@@ -88,9 +88,19 @@ namespace GoodweUdpPoller
                 Vpv2 = data.To16BitScale10(15),
                 Ipv2 = data.To16BitScale10(17),
 
-                TestD = data.To16Bit(35), // 4017
-                TestE = data.To16Bit(37), // 4047
-                TestF = data.To16Bit(39), // 4027
+                //TestH = data.To16Bit(19),  //65535
+                //TestI = data.To16Bit(21),  //65535
+                //TestJ = data.To16Bit(23),  //65535
+                //TestK = data.To16Bit(25),  //65535
+                //TestL = data.To16Bit(27),  //65535
+                //TestM = data.To16Bit(29),  //65535
+                //TestN = data.To16Bit(29),  //65535
+                //TestH = data.To16Bit(31),  //65535
+                //TestI = data.To16Bit(33),  //65535
+
+                TestD = data.To16Bit(35), // 4017, 4065
+                TestE = data.To16Bit(37), // 4047, 4105
+                TestF = data.To16Bit(39), // 4027, 4077
 
                 Vac1 = data.To16BitScale10(41),
                 Vac2 = data.To16BitScale10(43),
@@ -102,24 +112,24 @@ namespace GoodweUdpPoller
                 GridFrequency2 = data.To16BitScale100(55),
                 GridFrequency3 = data.To16BitScale100(57),
 
-                //TestA = data.To16Bit(59), //0
+                //TestH = data.To16Bit(59), //0
 
                 Power = data.To16Bit(61),
 
-                Status = (InverterTelemetry.InverterStatus)data[63],
+                //Status = (InverterTelemetry.InverterStatus)data[63], /// This is the original @@@@
+                Status = (InverterTelemetry.InverterStatus)data[64], // But I think status is at [64] @@@@
 
-                //TestC = data.To16Bit(65), //0
+                //TestH = data.To16Bit(65), //0
+                //TestI = data.To16Bit(67), //0
+                //TestJ = data.To16Bit(69), //0
+                //TestK = data.To16Bit(71), //0
+                //TestL = data.To16Bit(73), //65535, 0
+                //TestM = data.To16Bit(75), //65535
+                //TestN = data.To16Bit(77), //65305, 62295, 62300
 
-                //TestH = data.To16Bit(67),  //0
-                //TestH = data.To16Bit(69),  //0
-                //TestI = data.To16Bit(71),  //0
-                //TestH = data.To16Bit(73), //65535
-                //TestA = data.To16Bit(75), //65535
-                TestB = data.To16Bit(77), //65305
-
-                //TestK = data.To16Bit(79), // 0
-                //TestL = data.To16Bit(81), //0
-                TestC = data.To16Bit(83), // 887
+                //TestH = data.To16Bit(79), // 0
+                //TestI = data.To16Bit(81), //0
+                TestC = data.To16Bit(83), // 887, 489, 426
                 //TestN = data.To16Bit(85), //65535
                 
                 Temperature = data.To16BitScale10(87),
@@ -130,6 +140,10 @@ namespace GoodweUdpPoller
                 EnergyToday = data.To16BitScale10(93),
                 EnergyLifetime = data.To32BitScale10(95),
                 ResponseIp = responseIp
+
+
+
+                // [104] is probably "Safety Code" 
             };
         }
     }

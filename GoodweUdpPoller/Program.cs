@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -28,6 +29,7 @@ namespace GoodweUdpPoller
         /// <param name="pvoutputRequestUrl">optional url to post to</param>
         /// <param name="broadcastAddress">the address to send broadcasts to, for example 192.168.0.255 if that is your subnet</param>
         /// <param name="logfilename">the name of the local log file to which a log entry should be written</param>
+        /// <param name="interval">interval in seconds between measurements. 0 means only 1 measurement</param>
         /// <param name="verbatim">if true, data elements will also be printed on screen</param>
         public static async Task Main(
             string host = null,
@@ -37,6 +39,7 @@ namespace GoodweUdpPoller
             string pvoutputRequestUrl = "https://pvoutput.org/service/r2/addstatus.jsp",
             string broadcastAddress = "255.255.255.255",
             string logfilename = null,
+            int interval = 0,
             bool verbatim = false)
         {
             _verbatim = verbatim;
@@ -63,15 +66,47 @@ namespace GoodweUdpPoller
             if (pvoutputSystemId <= 0 ^ string.IsNullOrEmpty(pvoutputApikey))
                 throw new ArgumentException("Both systemid and apikey need to be set to upload to pvoutput");
 
-            var response = await poller.QueryInverter(host);
-            WriteObject(response);
+            if (interval != 0)
+                Console.WriteLine("Press ESC to abort logging.");
 
-            if (pvoutputSystemId > 0)
-                await PostToPvOutput(response, pvoutputSystemId, pvoutputApikey, pvoutputRequestUrl);
+            bool quit = false;
+            do
+            {
+                if ((Console.KeyAvailable) && (Console.ReadKey(true).Key == ConsoleKey.Escape)) quit = true;
 
-            if (logfilename != null)
-                FileLogger.WriteToFile(logfilename, response);
-         }
+                InverterTelemetry response = null;
+
+                try
+                {
+                    response = await poller.QueryInverter(host);
+                }
+                catch
+                {
+                }
+
+                if (response != null) // if we do have a response, log it to Pvout
+                {
+                    WriteObject(response);
+                    if (pvoutputSystemId > 0)
+                        await PostToPvOutput(response, pvoutputSystemId, pvoutputApikey, pvoutputRequestUrl);
+                }
+                else // if we do not have a response, make an empty reponse with the current time stamp, so that we can log it to file.
+                {
+                    response = new InverterTelemetry
+                    {
+                        Timestamp = DateTime.Now,
+                        ResponseIp = host,
+                        Status = InverterTelemetry.InverterStatus.Off
+                    };
+                }
+
+                if (logfilename != null)
+                    FileLogger.WriteToFile(logfilename, response);
+
+                if (interval != 0) Thread.Sleep(interval * 1000);
+
+            } while ((interval != 0) && (quit == false));
+        }
 
         private static async Task PostToPvOutput(InverterTelemetry inverterStatus, int pvOutputSystemId,
             string pvOutputApikey, string pvOutputRequestUrl)

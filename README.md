@@ -81,3 +81,4 @@ Modifications in this fork are:
 - Read out parameters from both PV-string, and all 3 phases from 3-phase inverters.
 - Logging to local file
 - Verbatim command line option (defaults to false)
+- Interval command line option (so configuring cron job is not needed)

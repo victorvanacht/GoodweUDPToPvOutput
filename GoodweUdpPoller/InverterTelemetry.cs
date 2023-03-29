@@ -115,7 +115,8 @@ namespace GoodweUdpPoller
             Waiting,
             Normal,
             Error,
-            Checking
+            Checking,
+            Off
         }
     }
 }
