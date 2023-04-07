@@ -18,7 +18,7 @@ namespace GoodweUdpPoller
                 // write header to .CSV file
                 using (StreamWriter writer = new StreamWriter(fileName, false))
                 {
-                    writer.WriteLine("TimeStamp, IP, EnergyToday, EnergyLifetime, Power, Temperature, Status, Iac1, Vac1, Freq1, Iac2, Vac2, Freq2, Iac2, Vac2, Freq2, Ipv1, Vpv1, Ipv2, Vpv2");
+                    writer.WriteLine("TimeStamp, IP, EnergyToday, EnergyLifetime, Power, Temperature, Status, Iac1, Vac1, Freq1, Iac2, Vac2, Freq2, Iac3, Vac3, Freq3, Ipv1, Vpv1, Ipv2, Vpv2");
                 }
             }
 
