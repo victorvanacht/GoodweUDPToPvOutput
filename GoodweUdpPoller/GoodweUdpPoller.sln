@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31112.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodweUdpPoller", "GoodweUdpPoller.csproj", "{016FEDE6-AA93-49FB-89E2-0442005C1772}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodweUDPToPvOutputTests", "..\GoodweUDPToPvOutputTests\GoodweUDPToPvOutputTests.csproj", "{8D430786-1364-47B0-88E7-71EF9B959F3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodweUDPToPvOutputTests", "..\GoodweUDPToPvOutputTests\GoodweUDPToPvOutputTests.csproj", "{8D430786-1364-47B0-88E7-71EF9B959F3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodweLogger", "..\GoodweLogger\GoodweLogger.csproj", "{2FECE081-6F71-4579-B63F-8B0132AE5C36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
