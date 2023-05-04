@@ -28,11 +28,17 @@ Options:
                                                    https://pvoutput.org/help/api_specification.html
   --pvoutput-request-url <pvoutput-request-url>    optional url to post to
   --version                                        Display version information
+  --logfilename <local file name>                  The name of the local log file to which a log entry should be written.
+                                                   (Existing file will be appended. If file does not exist a new file will be created.)
+  --verbatim <true|false>                          Default: false. When true every log item is also displayed on the screen
+  --interval <interval_time>                       Interval time in seconds between subsequent log entries.
+                                                   When set to 0, only one log entry will be created and program will exit._
+
 ```
-  Example:
+  **Example 1**:
   `GoodweUdpPoller.exe --host=192.168.2.123 --pvoutput-apikey=234abc123abcdef456789abcdef01234567abcde --pvoutput-system-id=12345`
   
-  Response:
+  **Response:**
 ```
 {
   "Temperature": 19.8,
@@ -50,6 +56,15 @@ Options:
 }
 <=OK 200: Added Status
 ```
+  **Example 2**:
+  `GoodweUdpPoller.exe --logfilename e:\goodwelog.txt --verbatim false --interval 300`
+  
+  **Response:**
+```
+```
+ A log file will be created with a new log entry every 5 minutes
+
+
 ## Installation
 A working PVOutput account is assumed.
 
