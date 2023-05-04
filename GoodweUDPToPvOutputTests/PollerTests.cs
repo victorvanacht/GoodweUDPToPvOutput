@@ -52,14 +52,14 @@ namespace GoodweUdpPoller
             var result = GoodwePoller.CreateTelemetryFrom(replyBytes, null);
             WriteObject(result);
             Assert.Equal(20.9, result.Temperature, 2);
-            Assert.Equal(50.0, result.GridFrequency, 3);
+            Assert.Equal(50.0, result.GridFrequency1, 3);
             Assert.Equal(381.2, result.EnergyLifetime);
             Assert.Equal(0.3, result.EnergyToday);
             Assert.Equal(940, result.Power);
-            Assert.Equal(3.9, result.Iac);
-            Assert.Equal(243.5, result.Vac);
-            Assert.Equal(4.4, result.Ipv);
-            Assert.Equal(211.6, result.Vpv);
+            Assert.Equal(3.9, result.Iac1);
+            Assert.Equal(243.5, result.Vac1);
+            Assert.Equal(4.4, result.Ipv1);
+            Assert.Equal(211.6, result.Vpv1);
             Assert.Equal("2021-05-18 08:27:28", result.Timestamp.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
