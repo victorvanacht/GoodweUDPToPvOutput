@@ -5,7 +5,8 @@ using System.Text.Json;
 using System.Threading;
 using Xunit;
 using Xunit.Abstractions;
-
+using GoodweLib;
+    
 namespace GoodweUdpPoller
 {
     public class PollerTests
@@ -49,7 +50,7 @@ namespace GoodweUdpPoller
         [Fact]
         public void Given_bytes_When_Create_Then_a_valid_InverterTelemetry_is_created()
         {
-            var result = GoodweLib.CreateTelemetryFrom(replyBytes, null);
+            var result = GoodweLib.GoodwePoller.CreateTelemetryFrom(replyBytes, null);
             WriteObject(result);
             Assert.Equal(20.9, result.Temperature, 2);
             Assert.Equal(50.0, result.GridFrequency1, 3);

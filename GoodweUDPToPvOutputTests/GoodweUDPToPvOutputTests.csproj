@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GoodWeLib\GoodweLib.csproj" />
     <ProjectReference Include="..\GoodweUdpPoller\GoodweUdpPoller.csproj" />
   </ItemGroup>
 
