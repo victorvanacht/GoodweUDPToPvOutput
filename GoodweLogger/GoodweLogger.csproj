@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoodWeLib\GoodweLib.csproj">
+      <Project>{4a94b4cc-6717-4f28-8a42-b90aff8ccd8d}</Project>
+      <Name>GoodweLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

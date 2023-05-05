@@ -13,4 +13,8 @@
     <PackageReference Include="System.CommandLine.DragonFruit" Version="0.4.0-alpha.22114.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoodWeLib\GoodweLib.csproj" />
+  </ItemGroup>
+
 </Project>

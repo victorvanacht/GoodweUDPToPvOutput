@@ -49,6 +49,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBoxStartStop = new System.Windows.Forms.CheckBox();
             this.groupBoxLocalLogFile.SuspendLayout();
             this.groupBoxPVOutput.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -218,7 +219,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -232,14 +233,27 @@
             // versionToolStripMenuItem
             // 
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.versionToolStripMenuItem.Text = "Version";
+            // 
+            // checkBoxStartStop
+            // 
+            this.checkBoxStartStop.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxStartStop.Location = new System.Drawing.Point(184, 78);
+            this.checkBoxStartStop.Name = "checkBoxStartStop";
+            this.checkBoxStartStop.Size = new System.Drawing.Size(80, 23);
+            this.checkBoxStartStop.TabIndex = 11;
+            this.checkBoxStartStop.Text = "Start";
+            this.checkBoxStartStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxStartStop.UseVisualStyleBackColor = true;
+            this.checkBoxStartStop.MouseClick += new System.Windows.Forms.MouseEventHandler(this.checkBoxStartStop_MouseClick);
             // 
             // GoodweLogger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 353);
+            this.Controls.Add(this.checkBoxStartStop);
             this.Controls.Add(this.labelLogEntry);
             this.Controls.Add(this.listBoxLogEntry);
             this.Controls.Add(this.textBoxLogInterval);
@@ -286,6 +300,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem versionToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBoxStartStop;
     }
 }
 

@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace GoodweUdpPoller
+namespace GoodweLib
 {
     public static class Extensions
     {

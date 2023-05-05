@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace GoodweUdpPoller
+namespace GoodweLib
 {
     public class Inverter
     {

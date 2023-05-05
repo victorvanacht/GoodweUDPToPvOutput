@@ -49,7 +49,7 @@ namespace GoodweUdpPoller
         [Fact]
         public void Given_bytes_When_Create_Then_a_valid_InverterTelemetry_is_created()
         {
-            var result = GoodwePoller.CreateTelemetryFrom(replyBytes, null);
+            var result = GoodweLib.CreateTelemetryFrom(replyBytes, null);
             WriteObject(result);
             Assert.Equal(20.9, result.Temperature, 2);
             Assert.Equal(50.0, result.GridFrequency1, 3);

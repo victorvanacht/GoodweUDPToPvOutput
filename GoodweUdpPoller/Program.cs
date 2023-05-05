@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using GoodweLib;
 
 
 namespace GoodweUdpPoller
@@ -101,7 +102,7 @@ namespace GoodweUdpPoller
                 }
 
                 if (logfilename != null)
-                    FileLogger.WriteToFile(logfilename, response);
+                    GoodweLib.FileLogger.WriteToFile(logfilename, response);
 
                 if (interval != 0) Thread.Sleep(interval * 1000);
 

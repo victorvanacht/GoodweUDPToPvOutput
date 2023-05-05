@@ -16,5 +16,19 @@ namespace GoodweLogger
         {
             InitializeComponent();
         }
+
+         private void checkBoxStartStop_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.checkBoxStartStop.Checked)
+            {
+                // start
+                this.checkBoxStartStop.Text = "Stop";
+            }
+            else
+            {
+                // stop
+                this.checkBoxStartStop.Text = "Start";
+            }
+        }
     }
 }
