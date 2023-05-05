@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodweUdpPoller", "GoodweUd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodweUDPToPvOutputTests", "..\GoodweUDPToPvOutputTests\GoodweUDPToPvOutputTests.csproj", "{8D430786-1364-47B0-88E7-71EF9B959F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodweLogger", "..\GoodweLogger\GoodweLogger.csproj", "{2FECE081-6F71-4579-B63F-8B0132AE5C36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoodweLib", "..\GoodWeLib\GoodweLib.csproj", "{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodweLib", "..\GoodWeLib\GoodweLib.csproj", "{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodweLogger", "..\GoodweLogger\GoodweLogger.csproj", "{7AE2E30E-1A60-4EA5-8952-5EA9BCF07C52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,14 @@ Global
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D430786-1364-47B0-88E7-71EF9B959F3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FECE081-6F71-4579-B63F-8B0132AE5C36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A94B4CC-6717-4F28-8A42-B90AFF8CCD8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE2E30E-1A60-4EA5-8952-5EA9BCF07C52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE2E30E-1A60-4EA5-8952-5EA9BCF07C52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE2E30E-1A60-4EA5-8952-5EA9BCF07C52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE2E30E-1A60-4EA5-8952-5EA9BCF07C52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
