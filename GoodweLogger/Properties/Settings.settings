@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GoodweLogger.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="logfileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\GoodweLog.csv</Value>
+    </Setting>
+    <Setting Name="hostAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="logInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="PVOutputSystemID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PVOutputAPIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PVOutputRequestURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

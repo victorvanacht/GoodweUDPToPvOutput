@@ -1,6 +1,6 @@
-﻿namespace GoodweLogger1
+﻿namespace GoodweLogger
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +52,7 @@
             this.labelLogFileName = new System.Windows.Forms.Label();
             this.labelLogEntry = new System.Windows.Forms.Label();
             this.listBoxLogEntry = new System.Windows.Forms.ListBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBoxPVOutput.SuspendLayout();
             this.groupBoxLocalLogFile.SuspendLayout();
@@ -79,6 +82,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -91,7 +95,7 @@
             // versionToolStripMenuItem
             // 
             this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
-            this.versionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.versionToolStripMenuItem.Text = "Version";
             // 
             // labelHostAddress
@@ -249,7 +253,13 @@
             this.listBoxLogEntry.Size = new System.Drawing.Size(245, 304);
             this.listBoxLogEntry.TabIndex = 9;
             // 
-            // Form1
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "GoodweLogger";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,9 +274,12 @@
             this.Controls.Add(this.textBoxHostAddress);
             this.Controls.Add(this.labelHostAddress);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "GoodweLogger";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBoxPVOutput.ResumeLayout(false);
@@ -302,5 +315,6 @@
         private Label labelLogEntry;
         private ListBox listBoxLogEntry;
         private ToolStripMenuItem versionToolStripMenuItem;
+        private NotifyIcon notifyIcon;
     }
 }
