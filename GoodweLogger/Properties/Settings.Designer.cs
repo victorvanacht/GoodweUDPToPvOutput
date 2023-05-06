@@ -94,5 +94,17 @@ namespace GoodweLogger.Properties {
                 this["PVOutputRequestURL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.50.255")]
+        public string broadcastAddress {
+            get {
+                return ((string)(this["broadcastAddress"]));
+            }
+            set {
+                this["broadcastAddress"] = value;
+            }
+        }
     }
 }

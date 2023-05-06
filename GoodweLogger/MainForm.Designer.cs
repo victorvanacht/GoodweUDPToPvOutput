@@ -53,6 +53,9 @@
             this.labelLogEntry = new System.Windows.Forms.Label();
             this.listBoxLogEntry = new System.Windows.Forms.ListBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.textBoxBroadcastAddress = new System.Windows.Forms.TextBox();
+            this.labelBroadcastAddress = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBoxPVOutput.SuspendLayout();
             this.groupBoxLocalLogFile.SuspendLayout();
@@ -82,7 +85,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -109,7 +112,7 @@
             // 
             // textBoxHostAddress
             // 
-            this.textBoxHostAddress.Location = new System.Drawing.Point(110, 36);
+            this.textBoxHostAddress.Location = new System.Drawing.Point(122, 36);
             this.textBoxHostAddress.Name = "textBoxHostAddress";
             this.textBoxHostAddress.Size = new System.Drawing.Size(204, 23);
             this.textBoxHostAddress.TabIndex = 2;
@@ -117,7 +120,7 @@
             // labelLogInterval
             // 
             this.labelLogInterval.AutoSize = true;
-            this.labelLogInterval.Location = new System.Drawing.Point(12, 80);
+            this.labelLogInterval.Location = new System.Drawing.Point(12, 96);
             this.labelLogInterval.Name = "labelLogInterval";
             this.labelLogInterval.Size = new System.Drawing.Size(69, 15);
             this.labelLogInterval.TabIndex = 3;
@@ -125,7 +128,7 @@
             // 
             // textBoxLogInterval
             // 
-            this.textBoxLogInterval.Location = new System.Drawing.Point(110, 77);
+            this.textBoxLogInterval.Location = new System.Drawing.Point(122, 93);
             this.textBoxLogInterval.Name = "textBoxLogInterval";
             this.textBoxLogInterval.Size = new System.Drawing.Size(68, 23);
             this.textBoxLogInterval.TabIndex = 4;
@@ -133,14 +136,14 @@
             // checkBoxStartStop
             // 
             this.checkBoxStartStop.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxStartStop.Location = new System.Drawing.Point(214, 77);
+            this.checkBoxStartStop.Location = new System.Drawing.Point(226, 93);
             this.checkBoxStartStop.Name = "checkBoxStartStop";
             this.checkBoxStartStop.Size = new System.Drawing.Size(100, 24);
             this.checkBoxStartStop.TabIndex = 5;
             this.checkBoxStartStop.Text = "Start";
             this.checkBoxStartStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBoxStartStop.UseVisualStyleBackColor = true;
-            this.checkBoxStartStop.CheckedChanged += new System.EventHandler(this.checkBoxStartStop_CheckedChanged);
+            this.checkBoxStartStop.CheckedChanged += new System.EventHandler(this.CheckBoxStartStop_CheckedChanged);
             // 
             // groupBoxPVOutput
             // 
@@ -150,9 +153,9 @@
             this.groupBoxPVOutput.Controls.Add(this.labelPVOutputAPIKey);
             this.groupBoxPVOutput.Controls.Add(this.textBoxPVOutputSystemID);
             this.groupBoxPVOutput.Controls.Add(this.labelPVOutputSystemID);
-            this.groupBoxPVOutput.Location = new System.Drawing.Point(12, 122);
+            this.groupBoxPVOutput.Location = new System.Drawing.Point(12, 139);
             this.groupBoxPVOutput.Name = "groupBoxPVOutput";
-            this.groupBoxPVOutput.Size = new System.Drawing.Size(314, 124);
+            this.groupBoxPVOutput.Size = new System.Drawing.Size(322, 124);
             this.groupBoxPVOutput.TabIndex = 6;
             this.groupBoxPVOutput.TabStop = false;
             this.groupBoxPVOutput.Text = "PVOutput.org";
@@ -168,14 +171,14 @@
             // 
             // textBoxPVOutputRequestURL
             // 
-            this.textBoxPVOutputRequestURL.Location = new System.Drawing.Point(98, 86);
+            this.textBoxPVOutputRequestURL.Location = new System.Drawing.Point(110, 86);
             this.textBoxPVOutputRequestURL.Name = "textBoxPVOutputRequestURL";
             this.textBoxPVOutputRequestURL.Size = new System.Drawing.Size(204, 23);
             this.textBoxPVOutputRequestURL.TabIndex = 10;
             // 
             // textBoxPVOutputAPIKey
             // 
-            this.textBoxPVOutputAPIKey.Location = new System.Drawing.Point(98, 57);
+            this.textBoxPVOutputAPIKey.Location = new System.Drawing.Point(110, 57);
             this.textBoxPVOutputAPIKey.Name = "textBoxPVOutputAPIKey";
             this.textBoxPVOutputAPIKey.Size = new System.Drawing.Size(204, 23);
             this.textBoxPVOutputAPIKey.TabIndex = 9;
@@ -191,7 +194,7 @@
             // 
             // textBoxPVOutputSystemID
             // 
-            this.textBoxPVOutputSystemID.Location = new System.Drawing.Point(98, 28);
+            this.textBoxPVOutputSystemID.Location = new System.Drawing.Point(110, 28);
             this.textBoxPVOutputSystemID.Name = "textBoxPVOutputSystemID";
             this.textBoxPVOutputSystemID.Size = new System.Drawing.Size(204, 23);
             this.textBoxPVOutputSystemID.TabIndex = 7;
@@ -211,14 +214,14 @@
             this.groupBoxLocalLogFile.Controls.Add(this.labelLogFileName);
             this.groupBoxLocalLogFile.Location = new System.Drawing.Point(12, 269);
             this.groupBoxLocalLogFile.Name = "groupBoxLocalLogFile";
-            this.groupBoxLocalLogFile.Size = new System.Drawing.Size(314, 76);
+            this.groupBoxLocalLogFile.Size = new System.Drawing.Size(322, 76);
             this.groupBoxLocalLogFile.TabIndex = 7;
             this.groupBoxLocalLogFile.TabStop = false;
             this.groupBoxLocalLogFile.Text = "Local log file";
             // 
             // textBoxLogFileName
             // 
-            this.textBoxLogFileName.Location = new System.Drawing.Point(98, 28);
+            this.textBoxLogFileName.Location = new System.Drawing.Point(110, 28);
             this.textBoxLogFileName.Name = "textBoxLogFileName";
             this.textBoxLogFileName.Size = new System.Drawing.Size(204, 23);
             this.textBoxLogFileName.TabIndex = 7;
@@ -250,20 +253,50 @@
             this.listBoxLogEntry.ItemHeight = 15;
             this.listBoxLogEntry.Location = new System.Drawing.Point(434, 36);
             this.listBoxLogEntry.Name = "listBoxLogEntry";
-            this.listBoxLogEntry.Size = new System.Drawing.Size(245, 304);
+            this.listBoxLogEntry.Size = new System.Drawing.Size(245, 274);
             this.listBoxLogEntry.TabIndex = 9;
             // 
             // notifyIcon
             // 
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "GoodweLogger";
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(434, 324);
+            this.progressBar.Maximum = 1;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(246, 21);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar.TabIndex = 10;
+            // 
+            // textBoxBroadcastAddress
+            // 
+            this.textBoxBroadcastAddress.Location = new System.Drawing.Point(122, 64);
+            this.textBoxBroadcastAddress.Name = "textBoxBroadcastAddress";
+            this.textBoxBroadcastAddress.Size = new System.Drawing.Size(204, 23);
+            this.textBoxBroadcastAddress.TabIndex = 12;
+            // 
+            // labelBroadcastAddress
+            // 
+            this.labelBroadcastAddress.AutoSize = true;
+            this.labelBroadcastAddress.Location = new System.Drawing.Point(12, 67);
+            this.labelBroadcastAddress.Name = "labelBroadcastAddress";
+            this.labelBroadcastAddress.Size = new System.Drawing.Size(104, 15);
+            this.labelBroadcastAddress.TabIndex = 11;
+            this.labelBroadcastAddress.Text = "Broadcast Address";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 353);
+            this.Controls.Add(this.textBoxBroadcastAddress);
+            this.Controls.Add(this.labelBroadcastAddress);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.listBoxLogEntry);
             this.Controls.Add(this.labelLogEntry);
             this.Controls.Add(this.groupBoxLocalLogFile);
@@ -316,5 +349,8 @@
         private ListBox listBoxLogEntry;
         private ToolStripMenuItem versionToolStripMenuItem;
         private NotifyIcon notifyIcon;
+        private ProgressBar progressBar;
+        private TextBox textBoxBroadcastAddress;
+        private Label labelBroadcastAddress;
     }
 }

@@ -20,5 +20,8 @@
     <Setting Name="PVOutputRequestURL" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="broadcastAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.50.255</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
