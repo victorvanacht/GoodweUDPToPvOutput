@@ -110,13 +110,16 @@ namespace GoodweLogger
             }
             else
             {
-                this.listBoxLogEntry.Items.Add(text);
-                if (this.listBoxLogEntry.Items.Count > 100)
+                string[] lines = text.Split("\r\n");
+                foreach (string line in lines)
                 {
-                    listBoxLogEntry.Items.RemoveAt(0);
+                    this.listBoxLogEntry.Items.Add(line);
+                    if (this.listBoxLogEntry.Items.Count > 100)
+                    {
+                        listBoxLogEntry.Items.RemoveAt(0);
+                    }
+                    this.listBoxLogEntry.SelectedIndex = this.listBoxLogEntry.Items.Count - 1;
                 }
-                this.listBoxLogEntry.SelectedIndex = this.listBoxLogEntry.Items.Count - 1;
-
             }
         }
     }
