@@ -38,6 +38,7 @@ namespace GoodweLogger
         private bool discoveryComplete;
         private GoodwePoller poller;
         private string hostIPaddress;
+        private PvOutput pvOutput;
 
         public Worker(GoodweLogger.MainForm form)
         {
@@ -49,6 +50,7 @@ namespace GoodweLogger
             this.discoveryComplete = false;
 
             this.poller = new GoodwePoller(TimeSpan.FromSeconds(3));
+            this.pvOutput = new GoodweLib.PvOutput();
 
 
             this.workerThread = new Thread(WorkerThread);
@@ -99,8 +101,19 @@ namespace GoodweLogger
 
                     if (telemetry != null)
                     {
+                        // write to screen
                         string? serialized = JsonSerializer.Serialize(telemetry, new JsonSerializerOptions { WriteIndented = true });
                         WriteToLog(serialized);
+
+                        //write to PvOutput
+                        if ((!this._PVOutputSystemID.Equals("")) &&
+                            (!this._PVOutputAPIKey.Equals("")) &&
+                            (!this._PVOutputRequestURL.Equals("")))
+                        {
+                            string responseString = PostToPvOutput(telemetry).Result;
+                            WriteToLog(responseString);
+                        }
+
                     }
                 }
                 else
@@ -159,6 +172,11 @@ namespace GoodweLogger
                 }
             }
             return response;
+        }
+
+        private async Task<string> PostToPvOutput(InverterTelemetry inverterStatus)
+        {
+            return pvOutput.Post(inverterStatus, _PVOutputSystemID, _PVOutputAPIKey, _PVOutputRequestURL).Result;
         }
     }
 }

@@ -46,6 +46,7 @@ namespace GoodweUdpPoller
             _verbatim = verbatim;
             var listenTimeout = TimeSpan.FromMilliseconds(timeout);
             var poller = new GoodwePoller(listenTimeout);
+            var pvOutput = new PvOutput();
             if (host == null)
             {
                 if (_verbatim)
@@ -89,7 +90,10 @@ namespace GoodweUdpPoller
                 {
                     WriteObject(response);
                     if (pvoutputSystemId > 0)
-                        await PostToPvOutput(response, pvoutputSystemId, pvoutputApikey, pvoutputRequestUrl);
+                    {
+                        string responseString = await pvOutput.Post(response, pvoutputSystemId.ToString(CultureInfo.InvariantCulture), pvoutputApikey, pvoutputRequestUrl);
+                        Console.WriteLine($"<={responseString}");
+                    }
                 }
                 else // if we do not have a response, make an empty reponse with the current time stamp, so that we can log it to file.
                 {
@@ -107,33 +111,6 @@ namespace GoodweUdpPoller
                 if (interval != 0) Thread.Sleep(interval * 1000);
 
             } while ((interval != 0) && (quit == false));
-        }
-
-        private static async Task PostToPvOutput(InverterTelemetry inverterStatus, int pvOutputSystemId,
-            string pvOutputApikey, string pvOutputRequestUrl)
-        {
-            var values = new Dictionary<string, string>
-            {
-                { "d", inverterStatus.Timestamp.ToString("yyyyMMdd") },
-                { "t", inverterStatus.Timestamp.ToString("HH:mm") },
-                { "v1", (inverterStatus.EnergyLifetime*1000).ToString(CultureInfo.InvariantCulture) },
-                { "c1", "1" /*Lifetime energy is cumulative*/},
-                { "v2", inverterStatus.Power.ToString(CultureInfo.InvariantCulture) },
-                { "v5", inverterStatus.Temperature.ToString(CultureInfo.InvariantCulture) },
-                { "v6", inverterStatus.Vac1.ToString(CultureInfo.InvariantCulture) },
-            };
-
-            var content = new FormUrlEncodedContent(values);
-            _client.DefaultRequestHeaders.Add("X-Pvoutput-Apikey", pvOutputApikey);
-            _client.DefaultRequestHeaders.Add("X-Pvoutput-SystemId", pvOutputSystemId.ToString(CultureInfo.InvariantCulture));
-            var response = await _client.PostAsync(pvOutputRequestUrl, content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
-            if (_verbatim)
-            {
-                Console.WriteLine($"<={responseString}");
-            }
-            response.EnsureSuccessStatusCode();
         }
 
         private static void WriteObject(object toWrite)
