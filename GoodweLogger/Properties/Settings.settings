@@ -18,10 +18,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="PVOutputRequestURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://pvoutput.org/service/r2/addstatus.jsp</Value>
     </Setting>
     <Setting Name="broadcastAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.50.255</Value>
+      <Value Profile="(Default)">192.168.1.255</Value>
     </Setting>
   </Settings>
 </SettingsFile>

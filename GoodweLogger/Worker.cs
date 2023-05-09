@@ -74,6 +74,8 @@ namespace GoodweLogger
 
         private void WorkerThread()
         {
+            DateTime previousLogEntry = new DateTime(1900, 1, 1); // a date long ago
+
             while (workerShouldClose == false)
             {
                 if (_loggingEnabled == true)
@@ -93,28 +95,57 @@ namespace GoodweLogger
                         this.discoveryComplete = true;
                     }
 
-                    InverterTelemetry telemetry = null;
-                    if (!this.hostIPaddress.Equals(""))
-                    {
-                        telemetry = ReadTelemetry().Result;
-                    }
+                    double secondsSindsLastLogEntry = (DateTime.Now - previousLogEntry).TotalSeconds;
+                    Console.WriteLine(secondsSindsLastLogEntry.ToString());
 
-                    if (telemetry != null)
+                    if (secondsSindsLastLogEntry > _logInterval)
                     {
-                        // write to screen
-                        string? serialized = JsonSerializer.Serialize(telemetry, new JsonSerializerOptions { WriteIndented = true });
-                        WriteToLog(serialized);
+                        previousLogEntry = DateTime.Now;
 
-                        //write to PvOutput
-                        if ((!this._PVOutputSystemID.Equals("")) &&
-                            (!this._PVOutputAPIKey.Equals("")) &&
-                            (!this._PVOutputRequestURL.Equals("")))
+                        InverterTelemetry telemetry = null;
+                        if (!this.hostIPaddress.Equals(""))
                         {
-                            string responseString = PostToPvOutput(telemetry).Result;
-                            WriteToLog(responseString);
+                            telemetry = ReadTelemetry().Result;
                         }
 
+                        if (telemetry != null)
+                        {
+                            // write to screen
+                            string? serialized = JsonSerializer.Serialize(telemetry, new JsonSerializerOptions { WriteIndented = true });
+                            WriteToLog(serialized);
+
+                            //write to PvOutput
+                            if ((!this._PVOutputSystemID.Equals("")) &&
+                                (!this._PVOutputAPIKey.Equals("")) &&
+                                (!this._PVOutputRequestURL.Equals("")))
+                            {
+                                string responseString = PostToPvOutput(telemetry).Result;
+                                WriteToLog(responseString);
+                            }
+                        }
+                        else // if we do not have a response, make an empty reponse with the current time stamp, so that we can log it anyway to file.
+                        {
+                            telemetry = new InverterTelemetry
+                            {
+                                Timestamp = DateTime.Now,
+                                ResponseIp = this.hostIPaddress,
+                                Status = InverterTelemetry.InverterStatus.Off
+                            };
+                        }
+
+                        if (this._logFileName != null)
+                            GoodweLib.FileLogger.WriteToFile(this._logFileName, telemetry);
                     }
+
+                    if ((secondsSindsLastLogEntry >= 0) && (secondsSindsLastLogEntry < (_logInterval*2))) // very first LogEntry the value for the previous time is rubbish
+                    {
+                        int percentage = Convert.ToInt32((100 * secondsSindsLastLogEntry) / _logInterval);
+                        if (percentage < 0) percentage = 0; // due to small rounding issues the percentage may be <0 or >100
+                        if (percentage > 100) percentage = 100;
+                        SetProgressBar(percentage);
+                    }
+
+                    Thread.Sleep(1000);
                 }
                 else
                 {
@@ -127,7 +158,7 @@ namespace GoodweLogger
 
         private void SetProgressBar(int progress)
         {
-            //this.form.SetProgress(progress);
+            this.form.SetProgressBar(progress);
         }
 
         private void WriteToLog(string text)

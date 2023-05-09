@@ -85,7 +85,7 @@ namespace GoodweLogger.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://pvoutput.org/service/r2/addstatus.jsp")]
         public string PVOutputRequestURL {
             get {
                 return ((string)(this["PVOutputRequestURL"]));
@@ -97,7 +97,7 @@ namespace GoodweLogger.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.50.255")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.255")]
         public string broadcastAddress {
             get {
                 return ((string)(this["broadcastAddress"]));

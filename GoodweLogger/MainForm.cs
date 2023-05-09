@@ -1,4 +1,5 @@
 ﻿using GoodweLib;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GoodweLogger
@@ -67,7 +68,7 @@ namespace GoodweLogger
 
             this.worker.Close(5);
 
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,6 +121,18 @@ namespace GoodweLogger
                     }
                     this.listBoxLogEntry.SelectedIndex = this.listBoxLogEntry.Items.Count - 1;
                 }
+            }
+        }
+
+        public void SetProgressBar(int value)
+        {
+            if (this.progressBar.InvokeRequired)
+            {
+                this.progressBar.Invoke((Action)delegate { SetProgressBar(value); });
+            }
+            else
+            {
+                this.progressBar.Value = value;
             }
         }
     }
