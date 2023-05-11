@@ -74,8 +74,6 @@ namespace GoodweUdpPoller
             bool quit = false;
             do
             {
-                if ((Console.KeyAvailable) && (Console.ReadKey(true).Key == ConsoleKey.Escape)) quit = true;
-
                 int retries = 5; //maximum number of retries
                 InverterTelemetry response = null;
 
@@ -114,7 +112,12 @@ namespace GoodweUdpPoller
                 if (logfilename != null)
                     GoodweLib.FileLogger.WriteToFile(logfilename, response);
 
-                if (interval != 0) Thread.Sleep(interval * 1000);
+                DateTime intervalStart = DateTime.Now;
+                while (((DateTime.Now - intervalStart).TotalSeconds < interval) && (quit==false))
+                {
+                    if ((Console.KeyAvailable) && (Console.ReadKey(true).Key == ConsoleKey.Escape)) quit = true;
+                    if (interval != 0) Thread.Sleep(100);
+                }
 
             } while ((interval != 0) && (quit == false));
         }
