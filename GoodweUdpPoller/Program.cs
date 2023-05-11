@@ -76,14 +76,20 @@ namespace GoodweUdpPoller
             {
                 if ((Console.KeyAvailable) && (Console.ReadKey(true).Key == ConsoleKey.Escape)) quit = true;
 
+                int retries = 5; //maximum number of retries
                 InverterTelemetry response = null;
 
-                try
+                while (retries > 0)
                 {
-                    response = await poller.QueryInverter(host);
-                }
-                catch
-                {
+                    try
+                    {
+                        response = await poller.QueryInverter(host);
+                        break;
+                    }
+                    catch
+                    {
+                        retries--;
+                    }
                 }
 
                 if (response != null) // if we do have a response, log it to Pvout
