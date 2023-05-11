@@ -106,5 +106,17 @@ namespace GoodweLogger.Properties {
                 this["broadcastAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool start {
+            get {
+                return ((bool)(this["start"]));
+            }
+            set {
+                this["start"] = value;
+            }
+        }
     }
 }

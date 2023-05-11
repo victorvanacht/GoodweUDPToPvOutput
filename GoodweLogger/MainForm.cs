@@ -21,6 +21,9 @@ namespace GoodweLogger
             this.textBoxLogFileName.Text = GoodweLogger.Properties.Settings.Default.logfileName;
 
             this.worker = new Worker(this);
+
+            this.checkBoxStartStop.Checked = GoodweLogger.Properties.Settings.Default.start;
+            CheckBoxStartStop_CheckedChanged(null, null);
         }
 
         private void CheckBoxStartStop_CheckedChanged(object sender, EventArgs e)
@@ -64,6 +67,7 @@ namespace GoodweLogger
             GoodweLogger.Properties.Settings.Default.PVOutputAPIKey = this.textBoxPVOutputAPIKey.Text;
             GoodweLogger.Properties.Settings.Default.PVOutputRequestURL = this.textBoxPVOutputRequestURL.Text;
             GoodweLogger.Properties.Settings.Default.logfileName = this.textBoxLogFileName.Text;
+            GoodweLogger.Properties.Settings.Default.start = this.checkBoxStartStop.Checked;
             Properties.Settings.Default.Save();
 
             this.worker.Close(5);

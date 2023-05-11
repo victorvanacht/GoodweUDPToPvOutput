@@ -23,5 +23,8 @@
     <Setting Name="broadcastAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.1.255</Value>
     </Setting>
+    <Setting Name="start" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
